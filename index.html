@@ -27,7 +27,7 @@
 <body>
 <div id="root"></div>
 
-<script type="text/babel" data-presets="react" data-type="module">
+<script type="text/plain" id="app-source">
 const { useState, useMemo, useContext, createContext } = React;
 
 /* lucide-react 없이 쓰는 최소 아이콘 세트 (동일한 오픈소스 벡터 형태) */
@@ -1043,6 +1043,13 @@ function GyeonginiApp() {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<GyeonginiApp />);
+</script>
+<script>
+  var __src = document.getElementById("app-source").textContent;
+  var __out = Babel.transform(__src, { presets: [["react", { runtime: "classic" }]] }).code;
+  var __tag = document.createElement("script");
+  __tag.textContent = __out;
+  document.body.appendChild(__tag);
 </script>
 </body>
 </html>
